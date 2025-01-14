@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-@RestController @RequiredArgsConstructor
+@RestController
+@RequiredArgsConstructor
 public class PredictionController {
 
     private final CsvLoaderService csvLoaderService;

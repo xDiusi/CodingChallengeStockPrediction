@@ -14,10 +14,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service @Slf4j
+@Service
+@Slf4j
 public class CsvLoaderService {
 
-    @Value("classpath:CSVTemplates/**/*.csv")
+    @Value("${csv.location}")
     private Resource[] csvResources;
 
     private final Map<String, List<StockData>> stockDataByFile = new HashMap<>();
@@ -55,5 +56,6 @@ public class CsvLoaderService {
         int startIndex = random.nextInt(data.size()- 9);
         return data.subList(startIndex, startIndex+10);
     }
+
 }
 
