@@ -2,6 +2,7 @@ package com.example.StockPrediction.service;
 
 import com.example.StockPrediction.model.StockData;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,13 +14,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-@Service
+@Service @Slf4j
 public class CsvLoaderService {
-
-    private static final Logger logger = LoggerFactory.getLogger(CsvLoaderService.class);
 
     @Value("classpath:CSVTemplates/**/*.csv")
     private Resource[] csvResources;
@@ -41,7 +37,7 @@ public class CsvLoaderService {
                         .collect(Collectors.toList());
                 stockDataByFile.put(resource.getFilename(), data);
             } catch (Exception e) {
-                logger.error("Failed to load CSV file: {}", resource.getFilename(), e);
+                log.error("Failed to load CSV file: {}", resource.getFilename(), e);
             }
         }
     }
